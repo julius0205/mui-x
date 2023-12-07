@@ -74,15 +74,25 @@ function GridColumnHeaderSortIconRaw(props: GridColumnHeaderSortIconProps) {
   );
 
   return (
-    <GridIconButtonContainer>
-      {index != null && (
-        <Badge badgeContent={index} color="default">
-          {iconButton}
-        </Badge>
-      )}
-
-      {index == null && iconButton}
-    </GridIconButtonContainer>
+    <rootProps.slots.baseTooltip
+      title={
+        apiRef.current.getLocaleText('columnHeaderSortIconLabel')(
+          counter,
+        ) as React.ReactElement
+      }
+      enterDelay={1000}
+      {...rootProps.slotProps?.baseTooltip}
+    >
+      <GridIconButtonContainer>
+        {index != null && (
+          <Badge badgeContent={index} color="default">
+            {iconButton}
+          </Badge>
+        )}
+  
+        {index == null && iconButton}
+      </GridIconButtonContainer>
+    </rootProps.slots.baseTooltip>
   );
 }
 
